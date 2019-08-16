@@ -9,7 +9,7 @@ abstract class Product
     private $sku;
     private $name;
     private $price;
-    private $type;
+    private $productType;
 
     /**
      * Product constructor.

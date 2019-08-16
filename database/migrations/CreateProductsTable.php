@@ -12,16 +12,23 @@ class CreateProductsTable
     {
         try {
             $connection = Connection::connectToDatabase();
-            $createTableSql = 'CREATE TABLE Products (
+            $createTableSql = 'CREATE TABLE products (
                             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-                            sku VARCHAR(30) NOT NULL,
-                            name VARCHAR(30) NOT NULL,
+                            sku VARCHAR(70) NOT NULL,
+                            name VARCHAR(70) NOT NULL,
                             price decimal(50),
-                            deleted_at TIMESTAMP)';
+                            product_type_id INT(6) UNSIGNED NOT NULL,
+                            deleted_at TIMESTAMP
+                            )';
             $connection->exec($createTableSql);
-            echo 'Created Table Products Successfully';
+            echo 'Created Table Products Successfully' . PHP_EOL;
+            $addForeignKeySql = 'ALTER TABLE products
+                                 ADD CONSTRAINT FK_ProductType
+                                 FOREIGN KEY (product_type_id) REFERENCES product_types(id)';
+            $connection->exec($addForeignKeySql);
+            echo 'Added Product Type Id Foreign Key Successfully' . PHP_EOL;
         } catch (\PDOException $e) {
-            echo 'Failed To Create Products Table: ' . $e->getMessage();
+            echo 'Failed To Create Products Table: ' . PHP_EOL . $e->getMessage();
         }
     }
 
@@ -29,10 +36,13 @@ class CreateProductsTable
     {
         try {
             $connection = Connection::connectToDatabase();
-            $createTableSql = 'DROP TABLE Products';
-            $connection->exec($createTableSql);
+            $dropTableSql = 'ALTER TABLE products
+                             DROP FOREIGN KEY FK_ProductType;
+                             DROP TABLE products';
+            $connection->exec($dropTableSql);
+            echo 'Dropped Table Products Successfully' . PHP_EOL;
         } catch (\PDOException $e) {
-            echo 'Failed To Drop Products Table: ' . $e->getMessage();
+            echo 'Failed To Drop Products Table: ' . PHP_EOL . $e->getMessage();
         }
     }
 }
