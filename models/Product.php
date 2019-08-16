@@ -62,6 +62,15 @@ abstract class Product
         }
     }
 
+    public static function getTypesAssocArr()
+    {
+        return [
+            'Book' => self::TYPE_BOOK,
+            'DVD Disc' => self::TYPE_DVD,
+            'Furniture' => self::TYPE_FURNITURE,
+        ];
+    }
+
     /**
      * @return mixed
      */
