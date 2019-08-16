@@ -1,11 +1,11 @@
 <?php
 /** @var [] $allProductsArr */
-require_once('../database/providers/ProductsDataProvider.php');
+require_once('../controllers/ProductController.php');
 
-use database\providers\ProductsDataProvider;
+use controllers\ProductController;
 use models\Product;
 
-$allProductsArr = ProductsDataProvider::getAllProducts();
+$allProductsArr = ProductController::actionGetAllProducts();
 ?>
 <div class="container product-list-container">
     <div class="row title-row">
@@ -34,7 +34,7 @@ $allProductsArr = ProductsDataProvider::getAllProducts();
                             <label class="form-check-label" for="itemCheck">
                             </label>
                         </div>
-                        <ul class="single-product-info">
+                        <ul class="single-product-info" data-id="<?php echo $singleProduct['id'] ?>">
                             <li class="product-sku"><?php echo $singleProduct['sku']; ?></li>
                             <li class="product-name"><?php echo $singleProduct['name']; ?></li>
                             <li class="product-price"><?php echo $singleProduct['price']; ?></li>

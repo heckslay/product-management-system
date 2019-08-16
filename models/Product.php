@@ -2,6 +2,9 @@
 
 namespace models;
 
+use database\Connection;
+use PDO;
+
 abstract class Product
 {
 
@@ -27,6 +30,33 @@ abstract class Product
         $this->name = $name;
         $this->price = $price;
         $this->productType = $productType;
+    }
+
+    public static function getAllProducts()
+    {
+        $connection = Connection::connectToDatabase();
+        $allProductsPrep = $connection->prepare('SELECT * FROM products 
+                                                           left join product_types 
+                                                               on products.product_type_id = product_types.id 
+                                                           WHERE deleted_at is null');
+        $allProductsPrep->execute();
+        $allProductsPrep->setFetchMode(PDO::FETCH_ASSOC);
+        $allProductsArr = $allProductsPrep->fetchAll();
+        return $allProductsArr;
+    }
+
+    public static function setDeleted($productId)
+    {
+        try {
+            $connection = Connection::connectToDatabase();
+            $deleteProductsPrep = $connection->prepare('UPDATE PRODUCTS SET deleted_at = NOW()
+            where id = :productId');
+            $deleteProductsPrep->bindValue(':productId', $productId, PDO::PARAM_STR);
+            $deleteProductsPrep->execute();
+        } catch (\Exception $e) {
+            echo 'Database Error Occurred';
+
+        }
     }
 
 
@@ -93,7 +123,6 @@ abstract class Product
     {
         $this->productType = $productType;
     }
-
 
 
 }

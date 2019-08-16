@@ -17,6 +17,6 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
-<?php require_once 'bootstrap.php' ?>
+<?php require_once 'router.php' ?>
 </body>
 </html>
