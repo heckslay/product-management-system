@@ -13,12 +13,12 @@ $allProductsArr = ProductController::actionGetAllProducts();
             <h2>Product List</h2>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 responsive-col">
-            <select class="form-control">
-                <option value="Mass Delete Action">Mass Delete Action</option>
+            <select class="form-control" id="massActionDropdown">
+                <option value="delete">Mass Delete Action</option>
             </select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 responsive-col">
-            <button class="btn btn-primary btn-danger">Apply</button>
+            <button class="btn btn-primary btn-danger" id="applyAction">Apply</button>
             <a href="index.php?pageName=add-product">
                 <button class="btn btn-primary">Add</button>
             </a>
@@ -27,14 +27,13 @@ $allProductsArr = ProductController::actionGetAllProducts();
     <div class="row product-row">
         <?php if ($allProductsArr): ?>
             <?php foreach ($allProductsArr as $singleProduct): ?>
-                <div class="col-xs-1 col-sm-4 col-md-3 col-lg-3">
-                    <div class="single-product-box">
+                <div class="col-xs-1 col-sm-4 col-md-3 col-lg-3 product-col">
+                    <div class="single-product-box" data-id="<?php echo $singleProduct['id'] ?>">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="itemCheck">
-                            <label class="form-check-label" for="itemCheck">
-                            </label>
+                            <label class="form-check-label" for="itemCheck"></label>
+                            <input class="form-check-input" type="checkbox" value="">
                         </div>
-                        <ul class="single-product-info" data-id="<?php echo $singleProduct['id'] ?>">
+                        <ul class="single-product-info">
                             <li class="product-sku"><?php echo $singleProduct['sku']; ?></li>
                             <li class="product-name"><?php echo $singleProduct['name']; ?></li>
                             <li class="product-price"><?php echo $singleProduct['price']; ?></li>
@@ -54,7 +53,7 @@ $allProductsArr = ProductController::actionGetAllProducts();
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-col">
                 <p class="no-entries-found">No Entries Found In Database</p>
             </div>
         <?php endif; ?>

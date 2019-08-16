@@ -1,6 +1,11 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
+    <meta name="description" content="Simple Product Management System">
+    <meta name="keywords" content="Books,DVD Disks,Furniture,Chairs">
+    <meta name="author" content="Lasha Lomidze">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Product Management System</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -12,6 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="assets/js/app.js"></script>
 
     <link rel="stylesheet" href="assets/dist/styles.css">
     <link rel="shortcut icon" href="favicon.ico">
