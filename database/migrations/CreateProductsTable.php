@@ -17,6 +17,9 @@ class CreateProductsTable
                             sku VARCHAR(70) NOT NULL,
                             name VARCHAR(70) NOT NULL,
                             price decimal(50),
+                            size VARCHAR(40),
+                            weight VARCHAR(40),
+                            dimensions VARCHAR(40),
                             product_type_id INT(6) UNSIGNED NOT NULL,
                             deleted_at TIMESTAMP
                             )';

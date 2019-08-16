@@ -16,12 +16,14 @@ abstract class Product
      * @param $sku
      * @param $name
      * @param $price
+     * @param $productType
      */
-    public function __construct($sku, $name, $price)
+    public function __construct($sku, $name, $price, $productType)
     {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
+        $this->productType = $productType;
     }
 
 
@@ -78,15 +80,15 @@ abstract class Product
      */
     public function getType()
     {
-        return $this->type;
+        return $this->productType;
     }
 
     /**
-     * @param mixed $type
+     * @param mixed $productType
      */
-    public function setType($type)
+    public function setType($productType)
     {
-        $this->type = $type;
+        $this->productType = $productType;
     }
 
 
