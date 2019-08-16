@@ -22,11 +22,28 @@ class ProductController
         return Product::getAllProducts();
     }
 
-    public static function deleteProducts($productIdArr)
+    public static function actionDeleteProducts($productIdArr)
     {
+        $lastProductId = null;
+        $deletionSuccess = true;
         foreach ($productIdArr as $productId) {
-            Product::setDeleted($productId);
+            if (!Product::changeDeletedStatus($productId)) {
+                $deletionSuccess = false;
+                $lastProductId = $productId;
+                break;
+            }
         }
+
+        if (!$deletionSuccess) {
+            foreach ($productIdArr as $productId) {
+                if($productId != $lastProductId) {
+                    Product::changeDeletedStatus($productId, true);
+                } else {
+                    break;
+                }
+            }
+        }
+        return $deletionSuccess;
     }
 
 }
