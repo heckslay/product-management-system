@@ -11,6 +11,12 @@ ul {
 
   .product-row {
     margin-top: 20px;
+    .no-entries-found {
+      text-align: center;
+      font-size: 19px;
+      color: #DC3545;
+      font-weight: bold;
+    }
   }
 
   .single-product-box {
