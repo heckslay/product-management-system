@@ -25,9 +25,8 @@ class ProductsDataProvider
                                                                on products.product_type_id = product_types.id 
                                                            WHERE deleted_at is null');
         $allProductsPrep->execute();
-        $result = $allProductsPrep->setFetchMode(PDO::FETCH_ASSOC);
+        $allProductsPrep->setFetchMode(PDO::FETCH_ASSOC);
         $allProductsArr = $allProductsPrep->fetchAll();
-        $allProductsObjArr = [];
         return $allProductsArr;
 
     }
