@@ -21,10 +21,13 @@ class CreateProductsTable
                             weight VARCHAR(40),
                             dimensions VARCHAR(40),
                             product_type_id INT(6) UNSIGNED NOT NULL,
-                            deleted_at TIMESTAMP
-                            )';
+                            deleted_at INT(12)
+                            );
+                            INSERT INTO products VALUES(2,\'GGWP0007\',\'War & Peace\',15,null,\'25\',null,1,null);
+                            INSERT INTO products VALUES(1,\'JVC200123\',\'ACME DISK\',25,\'700MB\',null,null,2,null);
+                            INSERT INTO products VALUES(3,\'TR120555\',\'Chair\',15,null,null,\'25x30x15\',3,null);';
             $connection->exec($createTableSql);
-            echo 'Created Table Products Successfully' . PHP_EOL;
+            echo 'Created Table Products and Inserted Initial Values Successfully' . PHP_EOL;
             $addForeignKeySql = 'ALTER TABLE products
                                  ADD CONSTRAINT FK_ProductType
                                  FOREIGN KEY (product_type_id) REFERENCES product_types(id)';
