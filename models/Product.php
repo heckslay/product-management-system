@@ -45,20 +45,22 @@ abstract class Product
         return $allProductsArr;
     }
 
-    public static function setDeleted($productId)
+    public static function changeDeletedStatus($productId, $unmark = false)
     {
+        $deletedCondition = $unmark ? 'NULL' : 'NOW()';
         try {
             $connection = Connection::connectToDatabase();
-            $deleteProductsPrep = $connection->prepare('UPDATE PRODUCTS SET deleted_at = NOW()
-            where id = :productId');
-            $deleteProductsPrep->bindValue(':productId', $productId, PDO::PARAM_STR);
+            $deleteProductsPrep = $connection->prepare('UPDATE products SET deleted_at =' . $deletedCondition .
+                ' WHERE id = :productId');
+            $deleteProductsPrep->bindParam(':productId', $productId, PDO::PARAM_INT);
             $deleteProductsPrep->execute();
+            return true;
         } catch (\Exception $e) {
-            echo 'Database Error Occurred';
+            var_dump($e->getMessage());exit;
+            return false;
 
         }
     }
-
 
     /**
      * @return mixed
