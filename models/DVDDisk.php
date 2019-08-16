@@ -22,5 +22,21 @@ class DVDDisk extends Product
         $this->size = $size;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param mixed $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
 
 }

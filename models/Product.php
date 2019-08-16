@@ -10,6 +10,9 @@ abstract class Product
     private $name;
     private $price;
     private $productType;
+    const TYPE_BOOK = 1;
+    const TYPE_DVD = 2;
+    const TYPE_FURNITURE = 3;
 
     /**
      * Product constructor.
@@ -90,6 +93,7 @@ abstract class Product
     {
         $this->productType = $productType;
     }
+
 
 
 }

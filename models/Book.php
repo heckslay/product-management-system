@@ -22,5 +22,21 @@ class Book extends Product
         $this->weight = $weight;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param mixed $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    }
+
 
 }
