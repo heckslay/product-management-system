@@ -7,7 +7,7 @@
             <button class="btn btn-primary btn-success responsive-button">Save</button>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 responsive-col">
-            <button class="btn btn-primary responsive-button">Products</button>
+           <a href="index.php?pageName=product-list"><button class="btn btn-primary responsive-button">Products</button></a>
         </div>
     </div>
     <div class="row form-row">
