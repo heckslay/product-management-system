@@ -55,7 +55,9 @@ $(document).ready(() => {
                     if (data.success == false) {
                         alert('An Error Occurred When Adding Product.');
                     } else {
-
+                        $('input').each((key, value) => {
+                            $(value).val('');
+                        });
                     }
                 },
             });

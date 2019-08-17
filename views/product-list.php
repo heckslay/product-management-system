@@ -36,7 +36,7 @@ $allProductsArr = ProductController::actionGetAllProducts();
                         <ul class="single-product-info">
                             <li class="product-sku"><?php echo $singleProduct['sku']; ?></li>
                             <li class="product-name"><?php echo $singleProduct['name']; ?></li>
-                            <li class="product-price"><?php echo $singleProduct['price']; ?></li>
+                            <li class="product-price"><?php echo number_format($singleProduct['price'], 2); ?> $</li>
                             <li class="product-special-property">
                                 <?php
                                 if($singleProduct['product_type_id'] == Product::TYPE_BOOK) {
