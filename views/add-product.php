@@ -38,3 +38,4 @@ $typesArr = Product::getTypesAssocArr();
         </div>
     </div>
 </div>
+<script src="assets/js/add-product.js"></script>

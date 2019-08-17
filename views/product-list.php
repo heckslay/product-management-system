@@ -59,3 +59,5 @@ $allProductsArr = ProductController::actionGetAllProducts();
         <?php endif; ?>
     </div>
 </div>
+<script src="assets/js/product-list.js"></script>
+
