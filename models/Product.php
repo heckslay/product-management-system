@@ -35,7 +35,9 @@ abstract class Product
     public static function getAllProducts()
     {
         $connection = Connection::connectToDatabase();
-        $allProductsPrep = $connection->prepare('SELECT * FROM products 
+        $allProductsPrep = $connection->prepare('SELECT products.id as product_id,sku,name,price,size,
+                                                           weight,dimensions, product_type_id
+                                                           FROM products 
                                                            left join product_types 
                                                                on products.product_type_id = product_types.id 
                                                            WHERE deleted_at is null');
