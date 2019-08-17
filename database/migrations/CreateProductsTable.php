@@ -25,7 +25,7 @@ class CreateProductsTable
                             deleted_at BIGINT
                             );
                             INSERT INTO products VALUES(1,"GGWP0007","War & Peace",15,null,"25",null,1,NOW(),null);
-                            INSERT INTO products VALUES(2,"JVC200123","ACME DISK",25,"700MB",null,null,2,NOW(),null);
+                            INSERT INTO products VALUES(2,"JVC200123","ACME DISK",25,"700",null,null,2,NOW(),null);
                             INSERT INTO products VALUES(3,"TR120555","Chair",15,null,null,"25x30x15",3,NOW(),null);';
             $connection->exec($createTableSql);
             echo 'Created Table Products and Inserted Initial Values Successfully' . PHP_EOL;
