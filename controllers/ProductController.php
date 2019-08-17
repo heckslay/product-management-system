@@ -34,6 +34,10 @@ class ProductController
      */
     public static function actionDeleteProducts($productIdArr)
     {
+        /*
+         * Loop through the product ID's user needs to delete
+         * call a purifier method on each one
+         */
         foreach ($productIdArr as $productIdKey => $productId) {
             $productIdArr[$productIdKey] = self::purifyUserInput($productId);
         }
@@ -68,15 +72,20 @@ class ProductController
      */
     public static function actionAddProduct($productInfo)
     {
+        /*
+         * Loop through the items of the productInfo array and
+         * dynamic values subarray and purify the input data
+         */
         foreach ($productInfo as $productDataKey => $productData) {
             if (!is_array($productData)) {
                 $productInfo[$productDataKey] = self::purifyUserInput($productData);
             } else {
                 foreach ($productData as $productDatumKey => $productDatum) {
-                    $productData[$productDatumKey] = self::purifyUserInput($productDatum);
+                    $productInfo['dynamicValues'][$productDatumKey] = self::purifyUserInput($productDatum);
                 }
             }
         }
+
 
         if ($productInfo['type'] == Product::TYPE_BOOK) {
             $weight = $productInfo['dynamicValues'][0];
