@@ -34,6 +34,10 @@ class ProductController
      */
     public static function actionDeleteProducts($productIdArr)
     {
+        foreach ($productIdArr as $productIdKey => $productId) {
+            $productIdArr[$productIdKey] = self::purifyUserInput($productId);
+        }
+
         $lastProductId = null;
         $deletionSuccess = true;
         foreach ($productIdArr as $productId) {
@@ -64,6 +68,16 @@ class ProductController
      */
     public static function actionAddProduct($productInfo)
     {
+        foreach ($productInfo as $productDataKey => $productData) {
+            if (!is_array($productData)) {
+                $productInfo[$productDataKey] = self::purifyUserInput($productData);
+            } else {
+                foreach ($productData as $productDatumKey => $productDatum) {
+                    $productData[$productDatumKey] = self::purifyUserInput($productDatum);
+                }
+            }
+        }
+
         if ($productInfo['type'] == Product::TYPE_BOOK) {
             $weight = $productInfo['dynamicValues'][0];
             $product = new Book($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
@@ -73,7 +87,7 @@ class ProductController
             $product = new DVDDisk($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
                 $size);
         } else if ($productInfo['type'] == Product::TYPE_FURNITURE) {
-           $dimensions = Furniture::formatDimensionsAsString($productInfo['dynamicValues']);
+            $dimensions = Furniture::formatDimensionsAsString($productInfo['dynamicValues']);
             $product = new Furniture($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
                 $dimensions);
         } else {
@@ -84,6 +98,14 @@ class ProductController
         }
 
         return false;
+    }
+
+    public static function purifyUserInput($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 
 }
