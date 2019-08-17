@@ -5,6 +5,7 @@
 /** @var [] $typesArr */
 
 require_once('../models/Product.php');
+
 use models\Product;
 
 $typesArr = Product::getTypesAssocArr();

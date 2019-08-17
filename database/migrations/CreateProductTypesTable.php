@@ -2,6 +2,7 @@
 
 
 namespace database\migrations;
+
 require_once('database/Connection.php');
 
 
