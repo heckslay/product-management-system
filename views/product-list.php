@@ -28,7 +28,7 @@ $allProductsArr = ProductController::actionGetAllProducts();
         <?php if ($allProductsArr): ?>
             <?php foreach ($allProductsArr as $singleProduct): ?>
                 <div class="col-xs-1 col-sm-4 col-md-3 col-lg-3 product-col">
-                    <div class="single-product-box" data-id="<?php echo $singleProduct['id'] ?>">
+                    <div class="single-product-box" data-id="<?php echo $singleProduct['product_id'] ?>">
                         <div class="form-check">
                             <label class="form-check-label" for="itemCheck"></label>
                             <input class="form-check-input" type="checkbox" value="">
@@ -40,9 +40,9 @@ $allProductsArr = ProductController::actionGetAllProducts();
                             <li class="product-special-property">
                                 <?php
                                 if($singleProduct['product_type_id'] == Product::TYPE_BOOK) {
-                                    echo 'Weight: ' . $singleProduct['weight'];
+                                    echo 'Weight: ' . $singleProduct['weight'] . ' KG';
                                 } else if($singleProduct['product_type_id'] == Product::TYPE_DVD) {
-                                    echo 'Size: ' . $singleProduct['size'];
+                                    echo 'Size: ' . $singleProduct['size'] . ' MB';
                                 } else if($singleProduct['product_type_id'] == Product::TYPE_FURNITURE) {
                                     echo 'Dimension: ' . $singleProduct['dimensions'];
                                 }

@@ -58,6 +58,8 @@ $(document).ready(() => {
                         $('input').each((key, value) => {
                             $(value).val('');
                         });
+
+                        alert('Product Was Added Successfully.');
                     }
                 },
             });
