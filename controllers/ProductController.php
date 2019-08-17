@@ -49,14 +49,17 @@ class ProductController
     public static function actionAddProduct($productInfo)
     {
         if ($productInfo['type'] == Product::TYPE_BOOK) {
+            $weight = $productInfo['dynamicValues'][0];
             $product = new Book($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
-                $productInfo['weight']);
+                $weight);
         } else if ($productInfo['type'] == Product::TYPE_DVD) {
+            $size = $productInfo['dynamicValues'][0];
             $product = new DVDDisk($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
-                $productInfo['size']);
+                $size);
         } else if ($productInfo['type'] == Product::TYPE_FURNITURE) {
+           $dimensions = Furniture::formatDimensionsAsString($productInfo['dynamicValues']);
             $product = new Furniture($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
-                Furniture::formatDimensionsAsString($productInfo['height'], $productInfo['weight'], $productInfo['length']));
+                $dimensions);
         } else {
             return false;
         }

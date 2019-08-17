@@ -29,13 +29,19 @@ class Book extends Product
     {
         try {
             $connection = Connection::connectToDatabase();
-            $createProductPrep = $connection->prepare('');
-            $createProductPrep->bindParam(':productId', $productId, PDO::PARAM_INT);
+            $createProductPrep = $connection->prepare('
+            INSERT INTO products(sku,name,price,weight,product_type_id,created_at)  
+             VALUES(:sku,:name,:price,:weight,:type,NOW());
+            ');
+            $createProductPrep->bindParam(':sku', self::getSku(), PDO::PARAM_STR);
+            $createProductPrep->bindParam(':name', self::getName(), PDO::PARAM_STR);
+            $createProductPrep->bindParam(':price', self::getPrice(), PDO::PARAM_INT);
+            $createProductPrep->bindParam(':weight', self::getWeight(), PDO::PARAM_STR);
+            $createProductPrep->bindParam(':type', self::getType(), PDO::PARAM_INT);
             $createProductPrep->execute();
             return true;
         } catch (\Exception $e) {
             return false;
-
         }
     }
 

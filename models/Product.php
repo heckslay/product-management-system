@@ -45,6 +45,7 @@ abstract class Product
         return $allProductsArr;
     }
 
+
     public abstract function saveInDatabase();
 
 
