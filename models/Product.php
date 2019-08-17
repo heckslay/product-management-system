@@ -56,7 +56,6 @@ abstract class Product
             $deleteProductsPrep->execute();
             return true;
         } catch (\Exception $e) {
-            var_dump($e->getMessage());exit;
             return false;
 
         }

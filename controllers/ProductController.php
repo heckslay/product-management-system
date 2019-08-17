@@ -46,4 +46,9 @@ class ProductController
         return $deletionSuccess;
     }
 
+    public static function actionAddProduct($productInfo)
+    {
+
+    }
+
 }

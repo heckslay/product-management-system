@@ -95,21 +95,16 @@ $(document).ready(() => {
         let typeId = $('#typeSwitcher').val();
         let dynamicValues = [];
         let dynamicInputsFilled = true;
-        $('.dynamic-input').each((key, value) => {
-            console.log(value);
-            if(key.val() === '') {
+        $('input[class="dynamic-input"]').each((key, value) => {
+            if ($.trim($(value).val()) == '') {
                 dynamicInputsFilled = false;
                 return false;
             }
             dynamicValues.push(key);
         });
 
+        if (sku !== '' && name !== '' && price !== '' && dynamicInputsFilled && typeId) {
 
-        if (sku !== '' && name !== '' && price !== '' && dynamicVal !== '' && dynamicInputsFilled && typeId) {
-            console.log(sku);
-            console.log(name);
-            console.log(price);
-            console.log(typeId);
         } else {
             alert('Please, Fill In All Fields');
         }
