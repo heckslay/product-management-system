@@ -31,7 +31,7 @@ class DVDDisk extends Product
             $connection = Connection::connectToDatabase();
             $createProductPrep = $connection->prepare('
             INSERT INTO products(sku,name,price,size,product_type_id,created_at)  
-             VALUES(:sku,:name,:price,:weight,:type,NOW());
+             VALUES(:sku,:name,:price,:size,:type,NOW());
             ');
             $createProductPrep->bindParam(':sku', self::getSku(), PDO::PARAM_STR);
             $createProductPrep->bindParam(':name', self::getName(), PDO::PARAM_STR);
