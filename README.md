@@ -38,3 +38,9 @@ In case, you'd like to run the compilation process on each change of the source 
 CLI command:
 
 ``npm run watch:sass``
+
+# Fun Things I Could Add
+- Update Functionality
+- Image Upload
+- Pretty URLs
+- Class Autoloading
