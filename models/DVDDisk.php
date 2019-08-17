@@ -25,6 +25,10 @@ class DVDDisk extends Product
         $this->size = $size;
     }
 
+    /**
+     * @return bool
+     * Creates a record of type DVD Disk in Products Table.
+     */
     public function saveInDatabase()
     {
         try {

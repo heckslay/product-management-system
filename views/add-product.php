@@ -1,4 +1,9 @@
 <?php
+/*
+* A view for adding product.
+*/
+/** @var [] $typesArr */
+
 require_once('../models/Product.php');
 use models\Product;
 

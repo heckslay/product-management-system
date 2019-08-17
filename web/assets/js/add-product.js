@@ -1,25 +1,29 @@
 $(document).ready(() => {
 
+    // Constants for product types
     const TYPE_BOOK = '1';
     const TYPE_DVD = '2';
     const TYPE_FURNITURE = '3';
 
+    // Dom Elements saved in variables for easier access
     let $addNewProductButton = $('.add-product-container #addProduct');
     let $typeSwitcher = $('.add-product-container #typeSwitcher');
 
     let $addProductForm = $('.add-product-form');
 
+    // Type change event callback, show dynamic inputs according to type
     $typeSwitcher.change(() => {
         changeDynamicInput();
     });
 
-
+    // New product adding button click callback
     $addNewProductButton.click(() => {
         addNewProduct();
     });
 
-
+    // New Product addition handling method
     function addNewProduct() {
+        // Get input values, Define variables
         let sku = $('#skuInput').val();
         let name = $('#nameInput').val();
         let price = $('#priceInput').val();
@@ -27,6 +31,10 @@ $(document).ready(() => {
         let dynamicValues = [];
         let dynamicInputsFilled = true;
         let params = {};
+
+        /*  Save dynamic input values to array
+         *  Break from loop if one of the is empty and set the validation variable accordingly.
+         */
         $('input[class="dynamic-input"]').each((key, value) => {
             if ($.trim($(value).val()) == '') {
                 dynamicInputsFilled = false;
@@ -35,7 +43,9 @@ $(document).ready(() => {
             dynamicValues.push($(value).val());
         });
 
+        // Validation, if all inputs are filled
         if (sku !== '' && name !== '' && price !== '' && dynamicInputsFilled && typeId) {
+            // Set up the params object value for future request
             params.action = 'add';
             params.productInfo = {
                 sku: sku,
@@ -45,7 +55,9 @@ $(document).ready(() => {
                 dynamicValues: dynamicValues
             };
 
-
+            /* Make ajax request to request-digester
+             * which will reroute it to the PHP product adding method.
+             */
             $.ajax({
                 url: 'request-digester.php',
                 data: params,
@@ -69,6 +81,7 @@ $(document).ready(() => {
         }
     }
 
+    // Simply renders form html according to selected product type
     function changeDynamicInput() {
         $('.dynamic-input-block').remove();
         if ($typeSwitcher.val() === TYPE_BOOK) {

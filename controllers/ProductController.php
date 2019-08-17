@@ -17,11 +17,21 @@ use PDO;
 
 class ProductController
 {
+    /**
+     * @return array
+     * Calls a Product class static method to get all products as array
+     */
     public static function actionGetAllProducts()
     {
         return Product::getAllProducts();
     }
 
+    /**
+     * @param $productIdArr
+     * @return bool
+     * Calls a method which sets a deleted at attribute for each ID in parameter array. If something fails,
+     * it will rever the changes.
+     */
     public static function actionDeleteProducts($productIdArr)
     {
         $lastProductId = null;
@@ -46,6 +56,12 @@ class ProductController
         return $deletionSuccess;
     }
 
+    /**
+     * @param $productInfo
+     * @return bool
+     * A method which gets productInfo and decides which model's instance to use according to passed type.
+     * After that, it saves new entries to database. If succeed, returns true.
+     */
     public static function actionAddProduct($productInfo)
     {
         if ($productInfo['type'] == Product::TYPE_BOOK) {

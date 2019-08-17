@@ -1,7 +1,8 @@
 # Product Management System
 This is a simple testing project which uses HTML/CSS/SCSS/PHP/JS and libraries/frameworks
 like Bootstrap and jQuery. It utilizes specific directory and whole flow structure which is based on my previous
-experiences with various PHP frameworks.
+experiences with various PHP frameworks. Despite of PHP Frameworks (Yii2, Laravel) being my main area of expertise,
+I managed to create this minor app from scratch. I tried to stick with the provided documentation. Enjoy!
 
 # Installing The Project
 At first you'll have to clone the project:
@@ -21,6 +22,11 @@ If later you'll want to revert the migrations, you can simply run:
 
 
 ``php database/migrateDown.php``
+
+After that, you'd want to install Frontend related packages, to do that run the following command from the
+project's root directory:
+
+``npm install``
 
 This project utilizes SCSS as the CSS preprocessor, therefore, if changes are made to the source file,
 you might want to build it. To run the build command, simply run the following command from the project's

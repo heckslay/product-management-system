@@ -9,6 +9,10 @@ use database\Connection;
 
 class CreateProductTypesTable
 {
+    /**
+     * A migration running method. After run, it will create a product types table
+     * and will insert initial values.
+     */
     public static function migrateUp()
     {
         try {
@@ -21,12 +25,15 @@ class CreateProductTypesTable
                             INSERT INTO product_types VALUES (3, \'Furniture\');';
             $connection->exec($createTableSql);
 
-            echo 'Created Table Product Types and Inserted Initial Values Successfully'. PHP_EOL;
+            echo 'Created Table Product Types and Inserted Initial Values Successfully' . PHP_EOL;
         } catch (\PDOException $e) {
             echo 'Failed To Create Product Types Table: ' . PHP_EOL . $e->getMessage();
         }
     }
 
+    /**
+     * Rollbacks the product types table creating migration.
+     */
     public static function migrateDown()
     {
         try {

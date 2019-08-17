@@ -25,6 +25,10 @@ class Furniture extends Product
         $this->dimensions = $dimensions;
     }
 
+    /**
+     * @return bool
+     * Creates a record of type Furniture in Products Table.
+     */
     public function saveInDatabase()
     {
         try {

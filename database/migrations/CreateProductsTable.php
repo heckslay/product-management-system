@@ -8,6 +8,10 @@ require_once('database/Connection.php');
 
 class CreateProductsTable
 {
+    /**
+     * A migration running method. After run, it will create a products table
+     * and will insert initial values for testing purposes.
+     */
     public static function migrateUp()
     {
         try {
@@ -39,6 +43,9 @@ class CreateProductsTable
         }
     }
 
+    /**
+     * Rollbacks the products table creating migration.
+     */
     public static function migrateDown()
     {
         try {

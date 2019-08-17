@@ -48,9 +48,20 @@ abstract class Product
     }
 
 
+    /**
+     * @return mixed
+     * An abstract method which is implemented in child classes.
+     * Handles record creation in products table.
+     */
     public abstract function saveInDatabase();
 
 
+    /**
+     * @param $productId
+     * @param bool $unmark
+     * @return bool
+     * Marks or unmarks (Depends on second param) deleted_at status for product.
+     */
     public static function changeDeletedStatus($productId, $unmark = false)
     {
         $deletedCondition = $unmark ? 'NULL' : 'NOW()';
@@ -67,6 +78,11 @@ abstract class Product
         }
     }
 
+    /**
+     * @return array
+     * Method used to get Key => Value paris of product types for
+     * frontend type switcher.
+     */
     public static function getTypesAssocArr()
     {
         return [

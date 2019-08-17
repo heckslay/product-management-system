@@ -7,6 +7,10 @@ use PDOException;
 
 class Connection
 {
+    /**
+     * @return PDO
+     * Initializes a database connection using PDO.
+     */
     public static function connectToDatabase()
     {
         $databaseConfig = include __DIR__ . '/../env.php';

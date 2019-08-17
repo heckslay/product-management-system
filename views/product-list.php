@@ -1,4 +1,8 @@
 <?php
+/*
+* A view for showing list of products.
+*/
+
 /** @var [] $allProductsArr */
 require_once('../controllers/ProductController.php');
 

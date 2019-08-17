@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This particular script handles the POST requests. At this point it handles
+ * product deletion and addition actions.
+ */
+
 namespace web;
 
 require_once '../controllers/ProductController.php';

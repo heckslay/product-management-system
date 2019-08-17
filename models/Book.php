@@ -25,6 +25,10 @@ class Book extends Product
         $this->weight = $weight;
     }
 
+    /**
+     * @return bool
+     * Creates a record of type Book in Products Table.
+     */
     public function saveInDatabase()
     {
         try {
