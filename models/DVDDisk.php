@@ -3,6 +3,9 @@
 namespace models;
 
 
+use database\Connection;
+use PDO;
+
 class DVDDisk extends Product
 {
     private $size;
@@ -20,6 +23,21 @@ class DVDDisk extends Product
     {
         parent::__construct($sku, $name, $price, $productType);
         $this->size = $size;
+    }
+
+    public function saveInDatabase()
+    {
+        try {
+            var_dump(self::getType());exit;
+            $connection = Connection::connectToDatabase();
+            $createProductPrep = $connection->prepare('');
+            $createProductPrep->bindParam(':productId', $productId, PDO::PARAM_INT);
+            $createProductPrep->execute();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+
+        }
     }
 
     /**

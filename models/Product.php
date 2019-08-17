@@ -45,6 +45,9 @@ abstract class Product
         return $allProductsArr;
     }
 
+    public abstract function saveInDatabase();
+
+
     public static function changeDeletedStatus($productId, $unmark = false)
     {
         $deletedCondition = $unmark ? 'NULL' : 'NOW()';

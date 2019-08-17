@@ -3,6 +3,9 @@
 namespace models;
 
 
+use database\Connection;
+use PDO;
+
 class Furniture extends Product
 {
     private $dimensions;
@@ -22,6 +25,20 @@ class Furniture extends Product
         $this->dimensions = $dimensions;
     }
 
+    public function saveInDatabase()
+    {
+        try {
+            $connection = Connection::connectToDatabase();
+            $createProductPrep = $connection->prepare('');
+            $createProductPrep->bindParam(':productId', $productId, PDO::PARAM_INT);
+            $createProductPrep->execute();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+
+        }
+    }
+
     /**
      * @return mixed
      */
@@ -36,6 +53,11 @@ class Furniture extends Product
     public function setDimensions($dimensions)
     {
         $this->dimensions = $dimensions;
+    }
+
+    public static function formatDimensionsAsString($height, $weight, $length)
+    {
+        return $height . 'x' . $weight . 'x' . $length;
     }
 
 

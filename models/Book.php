@@ -3,6 +3,9 @@
 namespace models;
 
 
+use database\Connection;
+use PDO;
+
 class Book extends Product
 {
     private $weight;
@@ -20,6 +23,20 @@ class Book extends Product
     {
         parent::__construct($sku, $name, $price, $productType);
         $this->weight = $weight;
+    }
+
+    public function saveInDatabase()
+    {
+        try {
+            $connection = Connection::connectToDatabase();
+            $createProductPrep = $connection->prepare('');
+            $createProductPrep->bindParam(':productId', $productId, PDO::PARAM_INT);
+            $createProductPrep->execute();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+
+        }
     }
 
     /**
