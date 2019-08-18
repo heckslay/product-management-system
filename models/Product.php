@@ -48,12 +48,41 @@ abstract class Product
     }
 
 
-    /**
-     * @return mixed
-     * An abstract method which is implemented in child classes.
-     * Handles record creation in products table.
-     */
-    public abstract function saveInDatabase();
+    public function saveInDatabase($colNameBoundValueMap)
+    {
+        $colNamesStr = '';
+        $colBoundValues = '';
+        $counter = 0;
+        $arrLength = count($colNameBoundValueMap);
+        foreach ($colNameBoundValueMap as $key => $value) {
+            $counter++;
+            $colNamesStr .= $key . ($counter < $arrLength ? ',' : '');
+            $colBoundValues .= ':' . $key . ($counter != $arrLength ? ',' : '');
+        };
+
+        try {
+            $connection = Connection::connectToDatabase();
+            $createProductPrep = $connection->prepare('
+            INSERT INTO products(sku,name,price,product_type_id,' . $colNamesStr . ')  
+             VALUES(:sku,:name,:price,:product_type_id,' . $colBoundValues . ');
+            ');
+
+            $createProductPrep->bindParam(':sku', self::getSku(), PDO::PARAM_STR);
+            $createProductPrep->bindParam(':name', self::getName(), PDO::PARAM_STR);
+            $createProductPrep->bindParam(':price', self::getPrice(), PDO::PARAM_INT);
+            $createProductPrep->bindParam(':product_type_id', self::getProductType(), PDO::PARAM_INT);
+
+            foreach ($colNameBoundValueMap as $colActualValueKey => $colActualValue) {
+                $createProductPrep->bindParam(':' . $colActualValueKey, $colActualValue, PDO::PARAM_STR);
+            }
+
+            $createProductPrep->execute();
+
+        } catch (\Exception $e) {
+            return false;
+        }
+
+    }
 
 
     /**
@@ -143,7 +172,7 @@ abstract class Product
     /**
      * @return mixed
      */
-    public function getType()
+    public function getProductType()
     {
         return $this->productType;
     }

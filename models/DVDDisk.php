@@ -26,30 +26,6 @@ class DVDDisk extends Product
     }
 
     /**
-     * @return bool
-     * Creates a record of type DVD Disk in Products Table.
-     */
-    public function saveInDatabase()
-    {
-        try {
-            $connection = Connection::connectToDatabase();
-            $createProductPrep = $connection->prepare('
-            INSERT INTO products(sku,name,price,size,product_type_id,created_at)  
-             VALUES(:sku,:name,:price,:size,:type,NOW());
-            ');
-            $createProductPrep->bindParam(':sku', self::getSku(), PDO::PARAM_STR);
-            $createProductPrep->bindParam(':name', self::getName(), PDO::PARAM_STR);
-            $createProductPrep->bindParam(':price', self::getPrice(), PDO::PARAM_INT);
-            $createProductPrep->bindParam(':size', self::getSize(), PDO::PARAM_STR);
-            $createProductPrep->bindParam(':type', self::getType(), PDO::PARAM_INT);
-            $createProductPrep->execute();
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-    /**
      * @return mixed
      */
     public function getSize()

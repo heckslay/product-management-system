@@ -101,11 +101,30 @@ class ProductController
         } else {
             return false;
         }
-        if ($product->saveInDatabase()) {
+
+        $colNameBoundValueMap = self::assemblePropertyMap($product);
+        if ($product->saveInDatabase($colNameBoundValueMap)) {
             return true;
         }
 
         return false;
+    }
+
+    public static function assemblePropertyMap($object)
+    {
+        $productType = $object->getProductType();
+        $colNameBoundValueMap = [];
+        if ($productType == Product::TYPE_BOOK) {
+            /** @var Book $object */
+            $colNameBoundValueMap['weight'] = $object->getWeight();
+        } else if ($productType == Product::TYPE_DVD) {
+            /** @var DVDDisk $object */
+            $colNameBoundValueMap['size'] = $object->getSize();
+        } else if ($productType == Product::TYPE_FURNITURE) {
+            /** @var Furniture $object */
+            $colNameBoundValueMap['dimensions'] = $object->getDimensions();
+        }
+        return $colNameBoundValueMap;
     }
 
     public static function purifyUserInput($data)

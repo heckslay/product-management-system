@@ -25,29 +25,6 @@ class Furniture extends Product
         $this->dimensions = $dimensions;
     }
 
-    /**
-     * @return bool
-     * Creates a record of type Furniture in Products Table.
-     */
-    public function saveInDatabase()
-    {
-        try {
-            $connection = Connection::connectToDatabase();
-            $createProductPrep = $connection->prepare('
-            INSERT INTO products(sku,name,price,dimensions,product_type_id,created_at)  
-             VALUES(:sku,:name,:price,:dimensions,:type,NOW());
-            ');
-            $createProductPrep->bindParam(':sku', self::getSku(), PDO::PARAM_STR);
-            $createProductPrep->bindParam(':name', self::getName(), PDO::PARAM_STR);
-            $createProductPrep->bindParam(':price', self::getPrice(), PDO::PARAM_INT);
-            $createProductPrep->bindParam(':dimensions', self::getDimensions(), PDO::PARAM_STR);
-            $createProductPrep->bindParam(':type', self::getType(), PDO::PARAM_INT);
-            $createProductPrep->execute();
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
 
     /**
      * @return mixed
