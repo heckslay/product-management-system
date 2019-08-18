@@ -23,6 +23,8 @@ If later you'll want to revert the migrations, you can simply run:
 
 ``php database/migrateDown.php``
 
+Note: Database itself must be created by hand. My script's ain't a charity. 
+
 After that, you'd want to install Frontend related packages, to do that run the following command from the
 project's root directory:
 
