@@ -78,6 +78,10 @@ abstract class Product
 
         try {
             $connection = Connection::connectToDatabase();
+            /*
+             * Set the generic columns in insert statement,
+             * concatenate them with dynamic values we created few lines before.
+             */
             $createProductPrep = $connection->prepare('
             INSERT INTO products(sku,name,price,product_type_id,' . $colNamesStr . ')  
              VALUES(:sku,:name,:price,:product_type_id,' . $colBoundValues . ');
@@ -88,6 +92,10 @@ abstract class Product
             $createProductPrep->bindParam(':price', self::getPrice(), PDO::PARAM_INT);
             $createProductPrep->bindParam(':product_type_id', self::getProductType(), PDO::PARAM_INT);
 
+            /*
+             * Loop through Key => Value array of dynamic params
+             * and do the bindings.
+             */
             foreach ($colNameBoundValueMap as $colActualValueKey => $colActualValue) {
                 $createProductPrep->bindParam(':' . $colActualValueKey, $colActualValue, PDO::PARAM_STR);
             }
