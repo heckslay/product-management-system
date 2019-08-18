@@ -39,7 +39,7 @@ CLI command:
 
 ``npm run watch:sass``
 
-# Fun Things I Could Add
+# Fun Things To Add
 - Update Functionality
 - Image Upload
 - Pretty URLs
