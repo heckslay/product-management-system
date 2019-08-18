@@ -32,6 +32,11 @@ abstract class Product
         $this->productType = $productType;
     }
 
+    /**
+     * @return array
+     * Simple method which selects all not deleted products
+     * from database and returns them as an associative array.
+     */
     public static function getAllProducts()
     {
         $connection = Connection::connectToDatabase();
@@ -48,8 +53,19 @@ abstract class Product
     }
 
 
+    /**
+     * @param $colNameBoundValueMap
+     * @return bool
+     * Universal method which saves new product in database.
+     * Works for both Product class objects and classes who inherit Product.
+     */
     public function saveInDatabase($colNameBoundValueMap)
     {
+        /*
+         * Declare the variables, loop through the input array
+         * to create the data structures required to assemble database query
+         * for product insertion.
+         */
         $colNamesStr = '';
         $colBoundValues = '';
         $counter = 0;

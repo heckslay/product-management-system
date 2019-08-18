@@ -85,7 +85,6 @@ class ProductController
             }
         }
 
-
         if ($productInfo['type'] == Product::TYPE_BOOK) {
             $weight = $productInfo['dynamicValues'][0];
             $product = new Book($productInfo['sku'], $productInfo['name'], $productInfo['price'], $productInfo['type'],
@@ -110,6 +109,13 @@ class ProductController
         return false;
     }
 
+    /**
+     * @param $object
+     * @return array
+     * This method creates a Map data structure which
+     * is required by saveInDatabase Method. Simply, it just maps
+     * property values to their names and returns the result array.
+     */
     public static function assemblePropertyMap($object)
     {
         $productType = $object->getProductType();
