@@ -2,7 +2,7 @@
 This is a simple testing project which uses HTML/CSS/SCSS/PHP/JS and libraries/frameworks
 like Bootstrap and jQuery. It utilizes specific directory and whole flow structure which is based on my previous
 experiences with various PHP frameworks. Despite of PHP Frameworks (Yii2, Laravel) being my main area of expertise,
-I managed to create this minor app from scratch. I tried to stick with the provided documentation. Enjoy!
+I managed to create this minor app from scratch. Enjoy!
 
 # Installing The Project
 At first you'll have to clone the project:
